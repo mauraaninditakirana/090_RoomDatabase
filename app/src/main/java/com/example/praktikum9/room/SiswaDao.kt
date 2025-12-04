@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -13,7 +14,7 @@ interface SiswaDao {
     fun getAllSiswa(): Flow<List<Siswa>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(siswa: Siswa)
+    suspend fun insert(siswa: Siswa) //fungsi asinkron(bisa dijeda)
 
     @Query("SELECT * from tblsiswa WHERE id = :id")
     fun getSiswa(id: Int): Flow<Siswa>
@@ -21,4 +22,5 @@ interface SiswaDao {
     @Delete
     suspend fun delete(siswa: Siswa)
 
+    //@Update
 }
