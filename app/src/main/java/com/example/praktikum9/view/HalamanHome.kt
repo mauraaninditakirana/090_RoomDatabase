@@ -1,5 +1,6 @@
 package com.example.praktikum9.view
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,29 +39,6 @@ import com.example.praktikum9.viewmodel.HomeViewModel
 import com.example.praktikum9.viewmodel.provider.PenyediaViewModel
 import com.example.praktikum9.R
 
-@Composable
-fun BodyHome(
-    itemSiswa: List<Siswa>,
-    modifier: Modifier=Modifier){
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
-    ){
-        if (itemSiswa.isEmpty()) {
-            Text(
-                text = stringResource(R.string.deskripsi_no_item),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.titleLarge
-            )
-        } else {
-            ListSiswa(
-                itemSiswa = itemSiswa,
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_small))
-            )
-        }
-    }
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
@@ -98,11 +76,35 @@ fun HomeScreen(
         BodyHome(
             itemSiswa = uiStateSiswa.listSiswa,
             onSiswaClick = navigateToItemUpdate,
-
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
         )
+    }
+}
+
+@Composable
+fun BodyHome(
+    itemSiswa: List<Siswa>,
+    onSiswaClick: (Int) -> Unit,
+    modifier: Modifier=Modifier){
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+    ){
+        if (itemSiswa.isEmpty()) {
+            Text(
+                text = stringResource(R.string.deskripsi_no_item),
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.titleLarge
+            )
+        } else {
+            ListSiswa(
+                itemSiswa = itemSiswa,
+                onSiswaClick = {onSiswaClick(it.id)},
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_small))
+            )
+        }
     }
 }
 
@@ -117,8 +119,8 @@ fun ListSiswa(
                 person ->  DataSiswa(
             siswa = person,
             modifier = Modifier
-                .padding(dimensionResource(id = R.dimen.padding_small)))
-                .clickable { onSiswaClick(person) }
+                .padding(dimensionResource(id = R.dimen.padding_small))
+                .clickable {onSiswaClick(person) })
         }
     }
 }
