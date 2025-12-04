@@ -9,3 +9,11 @@ Isi Data
 Detail Siswa
 
 <img width="959" height="539" alt="image" src="https://github.com/user-attachments/assets/e0946e72-3eff-4fa0-863e-ccd4d51ac97b" />
+
+Edit Siswa
+
+<img width="959" height="539" alt="image" src="https://github.com/user-attachments/assets/fdfeb344-e23e-4c0b-9eea-3e8418479dfa" />
+
+Hapus Siswa
+
+<img width="959" height="539" alt="image" src="https://github.com/user-attachments/assets/729592c8-af2c-4009-8952-d6e85d4ba7dc" />
